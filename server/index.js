@@ -1,6 +1,7 @@
 require("dotenv").config();
 const express = require('express');
 const massive = require('massive');
+const ctrl = require('./products_controller');
 
 const app = express();
 
@@ -13,6 +14,15 @@ massive({
     app.set('db', db)
     console.log("Database is connected")
 }).catch(error => console.log(error));
+
+
+//endpoints
+app.post('/api/products', ctrl.create); //create
+app.get('/api/products', ctrl.getAll); //getAll
+app.get('/api/products/:id', ctrl.getOne); //getOne
+app.put('/api/products/:id', ctrl.update); //update
+app.delete('/api/products/:id', ctrl.delete); //delete
+
 
 
 app.use(express.json());
