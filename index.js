@@ -15,6 +15,7 @@ massive({
     console.log("Database is connected")
 }).catch(error => console.log(error));
 
+app.use(express.json());
 
 //endpoints
 app.post('/api/products', ctrl.create); //create
@@ -25,6 +26,5 @@ app.delete('/api/products/:id', ctrl.delete); //delete
 
 
 
-app.use(express.json());
 
 app.listen(SERVER_PORT, () => console.log(`listening on port ${SERVER_PORT}`));
